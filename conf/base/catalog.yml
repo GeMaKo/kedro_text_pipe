@@ -1,0 +1,75 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+#
+# We support interacting with a variety of data stores including local file systems, cloud, network and HDFS
+#
+# An example data set definition can look as follows:
+#
+#bikes:
+#  type: pandas.CSVDataset
+#  filepath: "data/01_raw/bikes.csv"
+#
+#weather:
+#  type: spark.SparkDataset
+#  filepath: s3a://your_bucket/data/01_raw/weather*
+#  file_format: csv
+#  credentials: dev_s3
+#  load_args:
+#    header: True
+#    inferSchema: True
+#  save_args:
+#    sep: '|'
+#    header: True
+#
+#scooters:
+#  type: pandas.SQLTableDataset
+#  credentials: scooters_credentials
+#  table_name: scooters
+#  load_args:
+#    index_col: ['name']
+#    columns: ['name', 'gear']
+#  save_args:
+#    if_exists: 'replace'
+#    # if_exists: 'fail'
+#    # if_exists: 'append'
+#
+# The Data Catalog supports being able to reference the same file using two different Dataset implementations
+# (transcoding), templating and a way to reuse arguments that are frequently repeated. See more here:
+# https://docs.kedro.org/en/stable/data/data_catalog.html
+
+emails:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/emails.csv
+
+proc_email_data:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/proc_email_data.csv
+
+X_tsne:
+  type: pandas.CSVDataset
+  filepath: data/04_feature/tsne_feat.csv
+
+cluster_labels:
+  type: pandas.CSVDataset
+  filepath: data/07_model_output/cluster_labels.csv
+
+cluster_info:
+  type: pandas.CSVDataset
+  filepath: data/07_model_output/clusters.csv
+
+tfidf:
+  type: pickle.PickleDataset
+  filepath: data/06_models/tfidf_vectorizer.pkl
+  versioned: true
+
+lsa:
+  type: pickle.PickleDataset
+  filepath: data/06_models/lsa.pkl
+  versioned: true
+
+kmeans:
+  type: pickle.PickleDataset
+  filepath: data/06_models/kmeans.pkl
+  versioned: true

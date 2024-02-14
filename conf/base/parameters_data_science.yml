@@ -1,0 +1,13 @@
+tsne:
+  n_components: 2
+  n_iter: 500
+  n_iter_without_progress: 150
+  n_jobs: 2
+  random_state: 0
+  init: "random"
+tfidf:
+  norm: "l2"
+kmeans:
+  n_clusters: 5
+  max_iter: 100
+  n_init: 5
